@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Nay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe8f0 0%, #f0f8ff 100%);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #ff6b8b;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .message-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffdde1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .message-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            text-align: justify;
+        }
+
+        .message-content p {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .message-content p:nth-child(1) { animation-delay: 0.3s; }
+        .message-content p:nth-child(2) { animation-delay: 0.6s; }
+        .message-content p:nth-child(3) { animation-delay: 0.9s; }
+        .message-content p:nth-child(4) { animation-delay: 1.2s; }
+        .message-content p:nth-child(5) { animation-delay: 1.5s; }
+        .message-content p:nth-child(6) { animation-delay: 1.8s; }
+        .message-content p:nth-child(7) { animation-delay: 2.1s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff6b8b;
+            opacity: 0;
+            animation: fadeIn 1s ease 2.4s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .message-form-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffdde1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #ff6b8b;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff6b8b;
+            box-shadow: 0 0 0 3px rgba(255, 107, 139, 0.1);
+        }
+
+        .form-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            resize: vertical;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #ff6b8b;
+            box-shadow: 0 0 0 3px rgba(255, 107, 139, 0.1);
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #ff6b8b, #ff8e53);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.3);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .submit-button:hover:before {
+            left: 100%;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 107, 139, 0.4);
+        }
+
+        .submit-button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .cooldown-info {
+            text-align: center;
+            margin-top: 15px;
+            color: #ff8e53;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            min-width: 300px;
+            max-width: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            transform: translateX(400px);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            border-left: 4px solid #ff6b8b;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .notification-icon {
+            font-size: 1.5rem;
+            color: #ff6b8b;
+            flex-shrink: 0;
+        }
+
+        .notification-message {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .notification-text {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .notification-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 5px;
+            transition: color 0.2s;
+        }
+
+        .notification-close:hover {
+            color: #ff6b8b;
+        }
+
+        .notification.success {
+            border-left-color: #4CAF50;
+        }
+
+        .notification.success .notification-icon {
+            color: #4CAF50;
+        }
+
+        .notification.error {
+            border-left-color: #f44336;
+        }
+
+        .notification.error .notification-icon {
+            color: #f44336;
+        }
+
+        .notification.info {
+            border-left-color: #2196F3;
+        }
+
+        .notification.info .notification-icon {
+            color: #2196F3;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff6b8b;
+            font-size: 20px;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px 20px;
+            color: #888;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.9);
+            margin-top: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .heart-beat {
+            color: #ff6b8b;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .message-container,
+            .message-form-container {
+                padding: 25px 20px;
+                margin: 20px 15px;
+            }
+            
+            .message-content {
+                font-size: 1rem;
+            }
+            
+            .signature {
+                font-size: 2rem;
+            }
+            
+            .form-title {
+                font-size: 1.8rem;
+            }
+            
+            .submit-button {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+            
+            .notification {
+                left: 20px;
+                right: 20px;
+                min-width: auto;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .message-content p {
+                margin-bottom: 15px;
+            }
+            
+            .form-group label {
+                font-size: 1rem;
+            }
+            
+            .form-input,
+            .form-textarea {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="notification" id="notification">
+        <button class="notification-close" id="notificationClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="notification-content">
+            <div class="notification-icon" id="notificationIcon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="notification-message">
+                <div class="notification-title" id="notificationTitle">Notifikasi</div>
+                <div class="notification-text" id="notificationText">Pesan berhasil dikirim!</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Untuk Nay</h1>
+            <p>Sebuah pesan yang mungkin jadi terakhir</p>
+        </div>
+
+        <div class="message-container">
+            <div class="message-content">
+                <p>Nay… kalau pesan ini akhirnya jadi pesan terakhirku buat kamu, aku cuma mau bilang terima kasih.</p>
+                
+                <p>Terima kasih karena dulu kita bisa ketemu dengan cara yang nggak pernah aku bayangin. Dari awal canggung, terus dekat, kadang ribut, kadang menjauh, terus balik lagi… semua itu tetap punya arti buat aku.</p>
+                
+                <p>Kamu pernah jadi orang yang penting buat aku. Dari kamu, aku belajar banyak—tentang sabar, tentang ngerti perasaan orang, tentang jaga seseorang tanpa harus selalu ada di dekatnya.</p>
+                
+                <p>Kalau sekarang kamu milih buat menjauh, aku hormati. Setiap orang punya alasannya sendiri, dan kadang keputusan itu lahir dari hal-hal yang cuma kita sendiri yang tahu. Aku juga punya salah, kamu juga punya salah—tapi itu bagian dari proses, bukan sesuatu yang mau aku perpanjang.</p>
+                
+                <p>Aku cuma mau kamu tahu: aku peduli sama kamu bukan karena takut kehilangan, tapi karena kita pernah melewati banyak hal bareng.</p>
+                
+                <p>Jadi… makasih ya, Nay.<br>
+                Untuk hadir, pergi, balik lagi, dan semua versi kita yang pernah ada.</p>
+                
+                <p>Semoga kamu tetap baik, di mana pun kamu nanti.<br>
+                Aku ngilang seperti yang kamu mau, tapi bukan karena aku lari—aku cuma menghargai keputusanmu</p>
+            </div>
+            
+            <div class="signature">
+                [Alvin]
+            </div>
+        </div>
+
+        <div class="message-form-container">
+            <h2 class="form-title">Tinggalkan Pesan untuk Nay</h2>
+            
+            <form id="messageForm">
+                <div class="form-group">
+                    <label for="senderName"><i class="fas fa-user"></i> Nama kamu:</label>
+                    <input type="text" id="senderName" class="form-input" placeholder="Masukkan nama kamu" required maxlength="50">
+                </div>
+                
+                <div class="form-group">
+                    <label for="messageContent"><i class="fas fa-envelope"></i> Pesan untuk Nay:</label>
+                    <textarea id="messageContent" class="form-textarea" placeholder="Tulis pesanmu untuk Nay di sini..." required maxlength="2000"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button" id="submitButton">
+                    <i class="fas fa-paper-plane"></i> Kirim Pesan
+                </button>
+            </form>
+            
+            <div class="cooldown-info" id="cooldownInfo">
+                <i class="fas fa-info-circle"></i> ⚠️ Cooldown 5 menit setelah mengirim
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Dibuat dengan <span class="heart-beat">❤️</span> | Semoga kebahagiaan selalu menyertaimu</p>
+        </div>
+    </div>
+
+    <script>
+        const DISCORD_WEBHOOK_URL = 'https://webhook.lewisakura.moe/api/webhooks/1445962477576917154/BLF-vo1c0b2CrN9GHql3kBUgA5KRVT8OpuXT4JVDw6APWef7JWMoGuIjIC_GADF4CctL';
+
+        const messageForm = document.getElementById('messageForm');
+        const senderNameInput = document.getElementById('senderName');
+        const messageContentInput = document.getElementById('messageContent');
+        const submitButton = document.getElementById('submitButton');
+        const cooldownInfo = document.getElementById('cooldownInfo');
+        const notification = document.getElementById('notification');
+        const notificationClose = document.getElementById('notificationClose');
+        const notificationIcon = document.getElementById('notificationIcon');
+        const notificationTitle = document.getElementById('notificationTitle');
+        const notificationText = document.getElementById('notificationText');
+
+        const COOLDOWN_TIME = 5 * 60 * 1000; // 5 menit
+        let lastSentTime = localStorage.getItem('lastSentTime');
+        let cooldownTimer = null;
+
+        function formatTime(ms) {
+            const minutes = Math.floor(ms / 60000);
+            const seconds = Math.floor((ms % 60000) / 1000);
+            return `${minutes} menit ${seconds} detik`;
+        }
+        
+        function updateCooldown() {
+            if (!lastSentTime) {
+                submitButton.disabled = false;
+                cooldownInfo.innerHTML = '<i class="fas fa-info-circle"></i> ⚠️ Cooldown 5 menit setelah mengirim';
+                return;
+            }
+            
+            const now = Date.now();
+            const timeSinceLastSend = now - parseInt(lastSentTime);
+            const timeRemaining = COOLDOWN_TIME - timeSinceLastSend;
+            
+            if (timeRemaining > 0) {
+                submitButton.disabled = true;
+                cooldownInfo.innerHTML = `<i class="fas fa-clock"></i> ⏳ Cooldown aktif, bisa kirim lagi dalam <strong>${formatTime(timeRemaining)}</strong>`;
+
+                clearTimeout(cooldownTimer);
+                cooldownTimer = setTimeout(updateCooldown, 1000);
+            } else {
+                submitButton.disabled = false;
+                cooldownInfo.innerHTML = '<i class="fas fa-info-circle"></i> ⚠️ Cooldown 5 menit setelah mengirim';
+                localStorage.removeItem('lastSentTime');
+            }
+        }
+
+        updateCooldown();
+
+        function showNotification(type, title, message, duration = 5000) {
+            notification.className = 'notification ' + type;
+
+            const iconMap = {
+                success: 'fas fa-check-circle',
+                error: 'fas fa-exclamation-circle',
+                info: 'fas fa-info-circle'
+            };
+            notificationIcon.innerHTML = `<i class="${iconMap[type] || 'fas fa-info-circle'}"></i>`;
+
+            notificationTitle.textContent = title;
+            notificationText.textContent = message;
+
+            notification.classList.add('show');
+
+            clearTimeout(notification._timeout);
+            notification._timeout = setTimeout(() => {
+                notification.classList.remove('show');
+            }, duration);
+        }
+
+        notificationClose.addEventListener('click', () => {
+            notification.classList.remove('show');
+        });
+
+        async function sendToDiscord(name, message) {
+            try {
+                const response = await fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        embeds: [{
+                            title: '📨 Pesan Baru untuk Nay',
+                            color: 0xFF6B8B,
+                            fields: [
+                                {
+                                    name: '👤 Dari',
+                                    value: name,
+                                    inline: true
+                                },
+                                {
+                                    name: '📝 Pesan',
+                                    value: message.substring(0, 1020) + (message.length > 1020 ? '...' : '')
+                                }
+                            ],
+                            timestamp: new Date().toISOString(),
+                            footer: {
+                                text: 'Website Pesan untuk Nay'
+                            }
+                        }]
+                    })
+                });
+                
+                return response.ok;
+            } catch (error) {
+                console.error('Error sending to Discord:', error);
+                return false;
+            }
+        }
+
+        function createHeartRain() {
+            const heartCount = 20;
+            const heartIcons = ['❤️', '💖', '💕', '💗'];
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                
+                const left = Math.random() * 100;
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 2;
+                const size = Math.random() * 20 + 15;
+                
+                heart.style.cssText = `
+                    left: ${left}vw;
+                    top: -30px;
+                    font-size: ${size}px;
+                    animation: fallHeart ${duration}s ease-in ${delay}s forwards;
+                    opacity: 0.8;
+                `;
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, (duration + delay) * 1000);
+            }
+
+            if (!document.getElementById('heart-animation')) {
+                const style = document.createElement('style');
+                style.id = 'heart-animation';
+                style.textContent = `
+                    @keyframes fallHeart {
+                        0% {
+                            transform: translateY(0) rotate(0deg);
+                            opacity: 0.8;
+                        }
+                        100% {
+                            transform: translateY(100vh) rotate(360deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        messageForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = senderNameInput.value.trim();
+            const message = messageContentInput.value.trim();
+            
+            if (!name || !message) {
+                showNotification('error', 'Oops!', 'Harap isi semua field terlebih dahulu.');
+                return;
+            }
+
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+            
+            try {
+                // Kirim ke Discord
+                const success = await sendToDiscord(name, message);
+                
+                if (success) {
+                    showNotification('success', 'Berhasil!', 'Pesan berhasil dikirim ke Nay!');
+                    
+                    lastSentTime = Date.now();
+                    localStorage.setItem('lastSentTime', lastSentTime);
+                    messageForm.reset();
+                    createHeartRain();
+                    updateCooldown();
+                } else {
+                    showNotification('error', 'Gagal', 'Gagal mengirim pesan. Coba lagi nanti.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('error', 'Error', 'Terjadi kesalahan. Coba lagi nanti.');
+            } finally {
+
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            }
+        });
+
+        setTimeout(() => {
+            createHeartRain();
+        }, 2000);
+
+        function createRandomHeart() {
+            if (Math.random() > 0.7) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const duration = Math.random() * 2 + 1;
+                
+                heart.style.cssText = `
+                    left: ${left}vw;
+                    top: ${top}vh;
+                    font-size: ${Math.random() * 15 + 10}px;
+                    animation: floatHeart ${duration}s ease-in-out infinite;
+                    opacity: 0.3;
+                `;
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, duration * 1000);
+            }
+        }
+
+        if (!document.getElementById('float-heart-animation')) {
+            const style = document.createElement('style');
+            style.id = 'float-heart-animation';
+            style.textContent = `
+                @keyframes floatHeart {
+                    0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+                    50% { transform: translateY(-20px) scale(1.1); opacity: 0.5; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        setInterval(createRandomHeart, 4000);
+
+        document.addEventListener('wheel', (e) => {
+            if (!e.target.closest('.message-container') && !e.target.closest('.message-form-container')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        document.addEventListener('touchmove', (e) => {
+            if (!e.target.closest('.message-container') && !e.target.closest('.message-form-container')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        senderNameInput.addEventListener('input', () => {
+            if (senderNameInput.value.length > 50) {
+                senderNameInput.value = senderNameInput.value.substring(0, 50);
+            }
+        });
+        
+        messageContentInput.addEventListener('input', () => {
+            const maxLength = 2000;
+            if (messageContentInput.value.length > maxLength) {
+                messageContentInput.value = messageContentInput.value.substring(0, maxLength);
+            }
+        });
+    </script>
+</body>
+</html>
